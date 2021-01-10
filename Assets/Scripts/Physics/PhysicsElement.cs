@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PhysicsElement : MonoBehaviour
 {
+    [SerializeField]
+    Vector3 force;
     
     // Start is called before the first frame update
     void Start()
@@ -12,12 +14,34 @@ public class PhysicsElement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
+        DeactivatePhysics();
+
+        UpdatePsudoPhysics();
+
+        ActivatePhysics();
         
     }
 
-    void OnCollisionEnter(){
+    UpdatePsudoPhysics(){
         
+    }
+
+    private void ActivatePhysics(){
+
+    }
+
+    private void DeactivatePhysics(){
+
+    }
+
+    void OnCollisionEnter(){
+        ActivatePhysics();
+
+    }
+
+    void OnCollisionExit(){
+        DeactivatePhysics();
     }
 }
