@@ -25,10 +25,12 @@ public class PhysicsElement : MonoBehaviour
     }
 
     private void UpdatePsudoPhysics(){
+        transform.position += psudoForce;
         
     }
 
     private void ActivatePhysics(){
+        
 
     }
 
@@ -36,12 +38,5 @@ public class PhysicsElement : MonoBehaviour
 
     }
 
-    void OnCollisionEnter(){
-        ActivatePhysics();
 
-    }
-
-    void OnCollisionExit(){
-        DeactivatePhysics();
-    }
 }
