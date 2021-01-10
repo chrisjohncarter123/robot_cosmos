@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{0D741F8F-6749-2A52-363B-49E4067024A1}</ProjectGuid>
+    <ProjectGuid>{6D02BD40-63BA-6832-3B8D-7A042A498C3A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\GUI\Robot\NodeValuePanelGUI.cs" />
      <Compile Include="Assets\Scripts\GUI\Robot\ProgramBackgroundPanelGUI.cs" />
      <Compile Include="Assets\Scripts\GUI\Robot\SelectedComputerInformationPanelGUI.cs" />
+     <Compile Include="Assets\Scripts\Physics\CollisionDetector.cs" />
      <Compile Include="Assets\Scripts\Physics\PhysicsElement.cs" />
      <Compile Include="Assets\Scripts\Robot\Node.cs" />
      <Compile Include="Assets\Scripts\Robot\NodeCategory.cs" />
@@ -109,34 +110,34 @@
      <Compile Include="Assets\Scripts\Robot\RobotManipulator.cs" />
      <Compile Include="Assets\Scripts\Robot\RobotManipulatorSettings.cs" />
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>/Users/ChrisJohnCarter/Development/Unity/robot_game/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <HintPath>/Users/ChrisJohnCarter/Development/Unity/robot cosmos/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
- <HintPath>/Users/ChrisJohnCarter/Development/Unity/robot_game/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ <HintPath>/Users/ChrisJohnCarter/Development/Unity/robot cosmos/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>/Users/ChrisJohnCarter/Development/Unity/robot_game/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>/Users/ChrisJohnCarter/Development/Unity/robot cosmos/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>/Users/ChrisJohnCarter/Development/Unity/robot_game/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>/Users/ChrisJohnCarter/Development/Unity/robot cosmos/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>/Users/ChrisJohnCarter/Development/Unity/robot_game/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>/Users/ChrisJohnCarter/Development/Unity/robot cosmos/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>/Users/ChrisJohnCarter/Development/Unity/robot_game/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ <HintPath>/Users/ChrisJohnCarter/Development/Unity/robot cosmos/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Rider.Editor">
- <HintPath>/Users/ChrisJohnCarter/Development/Unity/robot_game/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ <HintPath>/Users/ChrisJohnCarter/Development/Unity/robot cosmos/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VisualStudio.Editor">
- <HintPath>/Users/ChrisJohnCarter/Development/Unity/robot_game/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
+ <HintPath>/Users/ChrisJohnCarter/Development/Unity/robot cosmos/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>/Users/ChrisJohnCarter/Development/Unity/robot_game/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>/Users/ChrisJohnCarter/Development/Unity/robot cosmos/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>/Users/ChrisJohnCarter/Development/Unity/robot_game/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>/Users/ChrisJohnCarter/Development/Unity/robot cosmos/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>/Applications/Unity/Hub/Editor/2019.3.0a7/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
