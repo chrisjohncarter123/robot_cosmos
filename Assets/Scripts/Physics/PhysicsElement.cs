@@ -24,7 +24,7 @@ public class PhysicsElement : MonoBehaviour
         
     }
 
-    UpdatePsudoPhysics(){
+    private void UpdatePsudoPhysics(){
         
     }
 
