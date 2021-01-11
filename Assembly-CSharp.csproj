@@ -61,7 +61,7 @@
      <Compile Include="Assets\Scripts\GUI\Robot\ProgramBackgroundPanelGUI.cs" />
      <Compile Include="Assets\Scripts\GUI\Robot\SelectedComputerInformationPanelGUI.cs" />
      <Compile Include="Assets\Scripts\Physics\CollisionDetector.cs" />
-     <Compile Include="Assets\Scripts\Physics\PhysicsElement.cs" />
+     <Compile Include="Assets\Scripts\Physics\PseudoPhysicsObject.cs" />
      <Compile Include="Assets\Scripts\Robot\Node.cs" />
      <Compile Include="Assets\Scripts\Robot\NodeCategory.cs" />
      <Compile Include="Assets\Scripts\Robot\NodeFlow.cs" />
@@ -109,6 +109,7 @@
      <Compile Include="Assets\Scripts\Robot\RobotHead.cs" />
      <Compile Include="Assets\Scripts\Robot\RobotManipulator.cs" />
      <Compile Include="Assets\Scripts\Robot\RobotManipulatorSettings.cs" />
+     <Compile Include="Assets\Scripts\ShootTest.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>/Users/ChrisJohnCarter/Development/Unity/robot cosmos/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>

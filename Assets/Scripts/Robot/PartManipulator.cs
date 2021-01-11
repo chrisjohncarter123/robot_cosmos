@@ -5,6 +5,7 @@ using UnityEngine;
 namespace Robot{
 public class PartManipulator : PieceManipulator
 {
+    
     public PartManipulator(RobotManipulator robotManipulator) : base(robotManipulator){
         
     }
@@ -61,9 +62,10 @@ public class PartManipulator : PieceManipulator
         
         newSurface.transform.parent = newPartGameObject.transform;
         float partSelectorSurfaceScale = partType.GetPartSelectorSurfaceScale();
-        newSurface.transform.localScale = direction * partSelectorSurfaceScale;
-        newSurface.transform.localPosition = direction * partSelectorSurfaceScale;
-
+        newSurface.transform.localScale = new Vector3(1,1,1);// + ( direction * partSelectorSurfaceScale );
+        newSurface.transform.localScale += direction * (partType.GetPartSelectorSurfaceScale()); 
+        newSurface.transform.localPosition = (direction * (1.5f + partSelectorSurfaceScale));
+        //newSurface.transform.localPosition += direction * (partType.GetPartSelectorSurfaceScale() * 1.5f); 
         return newSurface;
         
 

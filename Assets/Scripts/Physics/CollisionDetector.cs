@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class CollisionDetector : MonoBehaviour
 {
+    public List<Collider> collisions;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        collisions = new List<Collider>();;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        collisions.Add(other);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        collisions.Remove(other);
     }
 }
