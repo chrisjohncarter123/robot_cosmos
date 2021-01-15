@@ -52,6 +52,7 @@ public class PartManipulator : PieceManipulator
         GameObject newSurface = new GameObject();
         newSurface.name = name;
 
+        //Add components
         MeshFilter meshFilter = newSurface.AddComponent<MeshFilter>();
         meshFilter.mesh = partType.GetMesh();
         MeshRenderer meshRenderer = newSurface.AddComponent<MeshRenderer>();
@@ -59,6 +60,7 @@ public class PartManipulator : PieceManipulator
         BoxCollider boxCollider = newSurface.AddComponent<BoxCollider>();
         boxCollider.material = partType.GetPhysicMaterial();
         
+        //Transform
         newSurface.transform.parent = newPartGameObject.transform;
         float partSelectorSurfaceScale = partType.GetPartSelectorSurfaceScale();
         newSurface.transform.localScale = new Vector3(1,1,1);// + ( direction * partSelectorSurfaceScale );
@@ -67,6 +69,16 @@ public class PartManipulator : PieceManipulator
         //newSurface.transform.localPosition += direction * (partType.GetPartSelectorSurfaceScale() * 1.5f); 
         return newSurface;
         
+
+    }
+
+    private void AddRendererComponentsToGameObject(GameObject gameObject, PartType partType){
+        MeshFilter meshFilter = gameObject.AddComponent<MeshFilter>();
+        meshFilter.mesh = partType.GetMesh();
+        MeshRenderer meshRenderer = gameObject.AddComponent<MeshRenderer>();
+        meshRenderer.material = partType.GetMaterial();
+        BoxCollider boxCollider = gameObject.AddComponent<BoxCollider>();
+        boxCollider.material = partType.GetPhysicMaterial();
 
     }
 
