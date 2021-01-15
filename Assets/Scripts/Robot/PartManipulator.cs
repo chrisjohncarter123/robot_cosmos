@@ -30,12 +30,9 @@ public class PartManipulator : PieceManipulator
         Part newPart = newPartGameObject.AddComponent<Part>();
         newPart.SetPartType(partType);
         newPart.transform.parent = robotManipulator.GetPartParent().transform;
-        MeshFilter meshFilter = newPart.gameObject.AddComponent<MeshFilter>();
-        meshFilter.mesh = partType.GetMesh();
-        MeshRenderer meshRenderer = newPart.gameObject.AddComponent<MeshRenderer>();
-        meshRenderer.material = partType.GetMaterial();
-        BoxCollider boxCollider = newPart.gameObject.AddComponent<BoxCollider>();
-        boxCollider.material = partType.GetPhysicMaterial();
+        
+        AddRendererComponentsToGameObject(newPartGameObject, partType);
+        
 
         //Add PartSelectorSurfaces
         CreatePartSelectorSurface(partType, newPartGameObject, new Vector3(1,0,0), "Part Selector Surface - Right");
@@ -51,14 +48,7 @@ public class PartManipulator : PieceManipulator
     private GameObject CreatePartSelectorSurface(PartType partType, GameObject newPartGameObject, Vector3 direction, string name){
         GameObject newSurface = new GameObject();
         newSurface.name = name;
-
-        //Add components
-        MeshFilter meshFilter = newSurface.AddComponent<MeshFilter>();
-        meshFilter.mesh = partType.GetMesh();
-        MeshRenderer meshRenderer = newSurface.AddComponent<MeshRenderer>();
-        meshRenderer.material = partType.GetMaterial();
-        BoxCollider boxCollider = newSurface.AddComponent<BoxCollider>();
-        boxCollider.material = partType.GetPhysicMaterial();
+        AddRendererComponentsToGameObject(newSurface, partType);
         
         //Transform
         newSurface.transform.parent = newPartGameObject.transform;
