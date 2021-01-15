@@ -24,12 +24,12 @@ public class PartManipulator : PieceManipulator
         newPartGameObject.transform.position = new Vector3(0,8,0);
         newPartGameObject.transform.position += partType.GetPositionOffset();
         newPartGameObject.transform.eulerAngles += partType.GetRotationOffset();
+        newPart.transform.localScale = partType.GetScale();
         
         //Add components
         Part newPart = newPartGameObject.AddComponent<Part>();
         newPart.SetPartType(partType);
         newPart.transform.parent = robotManipulator.GetPartParent().transform;
-        newPart.transform.localScale = partType.GetScale();
         MeshFilter meshFilter = newPart.gameObject.AddComponent<MeshFilter>();
         meshFilter.mesh = partType.GetMesh();
         MeshRenderer meshRenderer = newPart.gameObject.AddComponent<MeshRenderer>();
@@ -38,7 +38,6 @@ public class PartManipulator : PieceManipulator
         boxCollider.material = partType.GetPhysicMaterial();
 
         //Add PartSelectorSurfaces
-        
         CreatePartSelectorSurface(partType, newPartGameObject, new Vector3(1,0,0), "Part Selector Surface - Right");
         CreatePartSelectorSurface(partType, newPartGameObject, new Vector3(-1,0,0), "Part Selector Surface - Left");
         CreatePartSelectorSurface(partType, newPartGameObject, new Vector3(0,1,0), "Part Selector Surface - Top");
