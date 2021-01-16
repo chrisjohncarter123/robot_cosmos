@@ -70,7 +70,6 @@
      <Compile Include="Assets\Scripts\Robot\NodeFlowInput.cs" />
      <Compile Include="Assets\Scripts\Robot\NodeFlowOutput.cs" />
      <Compile Include="Assets\Scripts\Robot\NodeManipulator.cs" />
-     <Compile Include="Assets\Scripts\Robot\NodeManipulatorSettings.cs" />
      <Compile Include="Assets\Scripts\Robot\NodeParent.cs" />
      <Compile Include="Assets\Scripts\Robot\NodePoint.cs" />
      <Compile Include="Assets\Scripts\Robot\NodeSettings.cs" />
@@ -87,7 +86,6 @@
      <Compile Include="Assets\Scripts\Robot\PartCategory.cs" />
      <Compile Include="Assets\Scripts\Robot\PartGroup.cs" />
      <Compile Include="Assets\Scripts\Robot\PartManipulator.cs" />
-     <Compile Include="Assets\Scripts\Robot\PartManipulatorSettings.cs" />
      <Compile Include="Assets\Scripts\Robot\PartParent.cs" />
      <Compile Include="Assets\Scripts\Robot\PartSelector.cs" />
      <Compile Include="Assets\Scripts\Robot\PartSelectorHit.cs" />
@@ -107,7 +105,6 @@
      <Compile Include="Assets\Scripts\Robot\Parts\ShooterWeapon.cs" />
      <Compile Include="Assets\Scripts\Robot\Piece.cs" />
      <Compile Include="Assets\Scripts\Robot\PieceCategory.cs" />
-     <Compile Include="Assets\Scripts\Robot\PieceManipulator.cs" />
      <Compile Include="Assets\Scripts\Robot\PieceParent.cs" />
      <Compile Include="Assets\Scripts\Robot\PieceType.cs" />
      <Compile Include="Assets\Scripts\Robot\RobotHead.cs" />

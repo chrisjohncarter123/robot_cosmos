@@ -10,6 +10,13 @@ namespace Robot{
     
     public class RobotManipulatorSettings : MonoBehaviour
     {
+        [SerializeField]
+        bool renderHitSelections = false;
+
+        public bool GetRenderHitSelections(){
+            return renderHitSelections;
+        }
+
         public NodeManipulatorSettings GetNodeManipulatorSettings(){
             return gameObject.GetComponent<NodeManipulatorSettings>();
         }

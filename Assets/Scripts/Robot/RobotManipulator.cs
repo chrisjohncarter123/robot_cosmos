@@ -4,6 +4,7 @@ using UnityEngine;
 using Robot.Parts;
 
 namespace Robot{
+
 public class RobotManipulator : MonoBehaviour
 {
     [SerializeField]
@@ -13,24 +14,11 @@ public class RobotManipulator : MonoBehaviour
     NodeParent nodeParent = null;
     PartParent partParent = null;
 
-    NodeManipulator nodeManipulator;
-    PartManipulator partManipulator;
 
     void Start(){
-         if(nodeManipulator == null || partManipulator == null){
-            nodeManipulator = new NodeManipulator(this);
-            partManipulator = new PartManipulator(this);
-
-         }
         
     }
 
-    public NodeManipulator GetNodeManipulator(){
-        return nodeManipulator;
-    }
-    public PartManipulator GetPartManipulator(){
-        return partManipulator;
-    }
 
     public RobotHead GetRobotHead(){
         return robotHead;
@@ -42,30 +30,56 @@ public class RobotManipulator : MonoBehaviour
         return partParent;
     }
 
-    public RobotManipulatorSettings GetRobotManipulatorSettings(){
-        return settings;
-    }
      public void CreateNewRobot(){
-
-         if(nodeManipulator == null || partManipulator == null){
-            nodeManipulator = new NodeManipulator(this);
-            partManipulator = new PartManipulator(this);
-
-         }
 
         GameObject newRobot = new GameObject();
         newRobot.name = "Robot Head";
         this.robotHead = newRobot.AddComponent<RobotHead>();
         this.nodeParent = this.robotHead.AddPieceParent<NodeParent>("Node");
         this.partParent = this.robotHead.AddPieceParent<PartParent>("Part");
-
-        partManipulator.AddPart<CommandCubeType>();
+        AddPart<CommandCubeType>();
     }
 
     public void DestroyImmediateRobot(){
         if(robotHead != null){
             DestroyImmediate(robotHead.gameObject);
         }
+
+    }
+
+    public void AddNode(NodeType nodeType){
+        PieceType pieceType = nodeType.GetComponent<PieceType>();
+        GameObject newNodeGameObject = AddPiece(pieceType);
+        
+        Node newNode = newNodeGameObject.AddComponent<Node>();
+        newNode.transform.parent = robotManipulator.GetNodeParent().transform;
+
+    }
+
+    public void DeleteNode(Node node){
+
+    }
+
+
+    public PartManipulator(RobotManipulator robotManipulator) : base(robotManipulator){
+        settings = robotManipulator.GetRobotManipulatorSettings().GetPartManipulatorSettings();
+    }
+
+    public void AddPart<T>() where T : MonoBehaviour {
+        PartType partType = robotManipulator.GetRobotManipulatorSettings().GetPartType<T>();
+        AddPart(partType);
+
+    }
+
+    public void AddPart(PartType partType){
+        Part part = Part.Create(partType);
+
+    }
+
+    
+
+
+    public void DeletePart(Part part){
 
     }
 

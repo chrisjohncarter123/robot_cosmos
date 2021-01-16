@@ -27,6 +27,14 @@ namespace Robot{
             
 
         }
+
+        public static Piece Create(PieceType pieceType){
+            GameObject newPieceGameObject = new GameObject();
+            newPieceGameObject.name = pieceType.GetPieceTypeName();
+            Piece piece = newPieceGameObject.AddComponent<Piece>();
+            return piece;
+
+        }
         // Start is called before the first frame update
         void Start()
         {
