@@ -21,7 +21,7 @@ public class AttachPart : MonoBehaviour
     }
 
     public void UsePart(){
-        robotManipulator.GetPartManipulator().AddPart(partType);
+        robotManipulator.AddPart(partType);
 
     }
 }

@@ -20,13 +20,17 @@ namespace Robot{
 
         [SerializeField]
         bool usePartCategory = false;
+
         [SerializeField]
         PartCategory partCategory;
 
         [SerializeField]
         bool usePartTypes = false;
+
         [SerializeField]
         PartType[] partTypes;
+
+        
         
         Part selectedPart;
 

@@ -6,6 +6,10 @@ namespace Robot
 {
     public class Part : MonoBehaviour
     {
+        RobotHead robotHead;
+
+        PartParent partParent;
+
         [SerializeField]
         PartType partType;
 
@@ -13,12 +17,12 @@ namespace Robot
 
         Piece piece;
 
-        PartManipulatorSettings settings;
+        RobotManipulator manipulator;
 
-        Dictionary<Vector3, PartSelectorSurface> surfaces;
+        Dictionary<Vector3, PartSelectorSurface> surfaces = null;
 
         void Start(){
-            this.surfaces = new Dictionary<Vector3, PartSelectorSurface>();
+            
         }
 
         public Piece GetPiece(){
@@ -29,29 +33,54 @@ namespace Robot
             return partType;
         }
 
+        public void SetRobotHead(RobotHead robotHead){
+            this.robotHead = robotHead;
+        }
+
+        public void SetPartParent(PartParent partParent){
+            this.partParent = partParent;
+        }
+
         public void SetPartType(PartType partType){
             this.partType = partType;
 
         }
 
-        public void SetPartManipulatorSettings(PartManipulatorSettings settings){
-            this.settings = settings;
+        public void SetRobotManipulator(RobotManipulator manipulator){
+            this.manipulator = manipulator;
         }
 
-        public static Part Create(PartType partType, PartManipulatorSettings settings){
+        public void AddSurface(Vector3 direction, string name){
+            if(this.surfaces == null){
+                this.surfaces = new Dictionary<Vector3, PartSelectorSurface>();
+            }
+            this.surfaces[direction] = PartSelectorSurface.Create(this, partType, manipulator, direction, name);
+
+        }
+
+        public void SetPosition(Vector3 position){
+            transform.position = position;
+        }
+
+        public static Part Create(RobotHead robotHead, PartParent partParent, PartType partType, RobotManipulator manipulator){
             PieceType pieceType = partType.GetComponent<PieceType>();
-            GameObject newPartGameObject = AddPiece(pieceType);
+            Piece newPiece = Piece.Create(pieceType);
+
+            GameObject newPartGameObject = newPiece.gameObject;
             
             //Transform
-            newPartGameObject.transform.position = new Vector3(0,8,0);
-            newPartGameObject.transform.position += partType.GetPositionOffset();
+            newPartGameObject.transform.parent = partParent.transform;
+            newPartGameObject.transform.position = new Vector3(0,0,0);
             newPartGameObject.transform.eulerAngles += partType.GetRotationOffset();
             newPartGameObject.transform.localScale = partType.GetScale();
             
             //Add components
             Part part = newPartGameObject.AddComponent<Part>();
+            part.SetRobotHead(robotHead);
+            part.SetRobotManipulator(manipulator);
+            part.SetPartParent(partParent);
             part.SetPartType(partType);
-            part.transform.parent = robotManipulator.GetPartParent().transform;
+            
             
             AddMeshFilter(newPartGameObject, partType);
             AddMeshRenderer(newPartGameObject, partType);
@@ -59,13 +88,13 @@ namespace Robot
             
             
             //Add PartSelectorSurfaces
-            surfaces[new Vector3( 1, 0, 0)] = PartSelectorSurface.Create(part, partType, settings, new Vector3( 1, 0, 0), "Part Selector Surface - Right");
-            surfaces[new Vector3(-1, 0, 0)] = PartSelectorSurface.Create(part, partType, settings, new Vector3(-1, 0, 0), "Part Selector Surface - Left");
-            surfaces[new Vector3( 0, 1, 0)] = PartSelectorSurface.Create(part, partType, settings, new Vector3( 0, 1, 0), "Part Selector Surface - Top");
-            surfaces[new Vector3( 0,-1, 0)] = PartSelectorSurface.Create(part, partType, settings, new Vector3( 0,-1, 0), "Part Selector Surface - Bottom");
-            surfaces[new Vector3( 0, 0, 1)] = PartSelectorSurface.Create(part, partType, settings, new Vector3( 0, 0, 1), "Part Selector Surface - Forward");
-            surfaces[new Vector3( 0, 0,-1)] = PartSelectorSurface.Create(part, partType, settings, new Vector3( 0, 0,-1), "Part Selector Surface - Back");
-
+            part.AddSurface(new Vector3( 1, 0, 0), "Part Selector Surface - Right");
+            part.AddSurface(new Vector3(-1, 0, 0), "Part Selector Surface - Left");
+            part.AddSurface(new Vector3( 0, 1, 0), "Part Selector Surface - Up");
+            part.AddSurface(new Vector3( 0,-1, 0), "Part Selector Surface - Down");
+            part.AddSurface(new Vector3( 0, 0, 1), "Part Selector Surface - Forward");
+            part.AddSurface(new Vector3( 0, 0,-1), "Part Selector Surface - Back");
+            
             return part;
 
         }
