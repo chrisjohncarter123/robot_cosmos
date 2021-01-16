@@ -16,6 +16,15 @@ namespace Robot
         Vector3 scale = new Vector3(1,1,1);
 
         [SerializeField]
+        float partSelectorDistance = 2;
+
+        [SerializeField]
+        bool usePartScaleForPartSelectorHitScale = true;
+
+        [SerializeField]
+        Vector3 partSelectorHitScale = new Vector3(1.15f,1.15f,1.15f);
+
+        [SerializeField]
         float partSelectorSurfaceScale = 1;
 
         [SerializeField]
@@ -40,6 +49,20 @@ namespace Robot
 
         public Vector3 GetScale(){
             return scale;
+        }
+
+        public float GetPartSelectorDistance(){
+            return partSelectorDistance;
+        }
+
+        public Vector3 GetPartSelectorHitScale(){
+            if(usePartScaleForPartSelectorHitScale){
+                return scale;
+            }
+            else{
+                return partSelectorHitScale;
+            }
+            
         }
 
         public float GetPartSelectorSurfaceScale(){

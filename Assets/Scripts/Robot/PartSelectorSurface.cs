@@ -19,14 +19,22 @@ public class PartSelectorSurface : MonoBehaviour
 
     }
 
+    public Vector3 GetDirection(){
+        return direction;
+    }
+
     public void SetPart(Part part){
         this.part = part;
+    }
+
+    public Part GetPart(){
+        return part;
     }
 
     public void SetRobotManipulator(RobotManipulator manipulator){
         this.manipulator = manipulator;
     }
-~\
+
 
     public static PartSelectorSurface Create(Part part, PartType partType, RobotManipulator manipulator, Vector3 direction, string name){
         GameObject newSurface = new GameObject();
@@ -71,5 +79,7 @@ public class PartSelectorSurface : MonoBehaviour
        
 
     }
+
+    
 }
 }
