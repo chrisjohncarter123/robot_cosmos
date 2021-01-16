@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class GameObjectHelper : MonoBehaviour
+public static class GameObjectHelper
 {
     public static MeshFilter AddMeshFilter(GameObject gameObject){
         MeshFilter meshFilter = gameObject.AddComponent<MeshFilter>();

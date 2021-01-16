@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace Robot{
 public class PartSelectorSurface : MonoBehaviour
 {
     Vector3 direction;
     Part part;
     PartType partType;
-    PartManipulatorSettings settings;
+    RobotManipulator manipulator;
 
     public void SetPartType(PartType partType){
         this.partType = partType;
@@ -22,28 +23,28 @@ public class PartSelectorSurface : MonoBehaviour
         this.part = part;
     }
 
-    public void SetPartManipulatorSettings(PartManipulatorSettings settings){
-        this.settings = settings;
+    public void SetRobotManipulator(RobotManipulator manipulator){
+        this.manipulator = manipulator;
     }
+~\
 
-
-    public static PartSelectorSurface CreatePartSelectorSurface(Part part, PartType partType, PartManipulatorSettings settings, Vector3 direction, string name){
+    public static PartSelectorSurface Create(Part part, PartType partType, RobotManipulator manipulator, Vector3 direction, string name){
         GameObject newSurface = new GameObject();
         newSurface.name = name;
 
         PartSelectorSurface newPartSelectorSurface = newSurface.AddComponent<PartSelectorSurface>();
         newPartSelectorSurface.SetPartType(partType);
         newPartSelectorSurface.SetDirection(direction);
-        newPartSelectorSurface.SetPart(partType);
-        newPartSelectorSurface.SetPartManipulatorSettings(settings);
+        newPartSelectorSurface.SetPart(part);
+        newPartSelectorSurface.SetRobotManipulator(manipulator);
         
-        Part.AddBoxCollider(part, partType);
-        if(settings.GetRenderHitSelections()){
-            Part.AddMeshFilter(part, partType);
-            Part.AddMeshRenderer(part, partType);
+        Part.AddBoxCollider(newSurface, partType);
+        if(manipulator.GetRenderHitSelections()){
+            Part.AddMeshFilter(newSurface, partType);
+            Part.AddMeshRenderer(newSurface, partType);
         }
         
-        newSurface.transform.parent = newPartGameObject.transform;
+        newSurface.transform.parent = part.gameObject.transform;
         newPartSelectorSurface.UpdatePositionRotationScale();
 
         return newPartSelectorSurface;
@@ -51,15 +52,24 @@ public class PartSelectorSurface : MonoBehaviour
 
     public void UpdatePositionRotationScale(){
 
-        //position
-        Vector3 positionCentered = .5f * direction;
-        Vector3 positionOffset = .5f * MathHelper.MultiplyVector3Coords(transform.localScale, direction);
-        transform.localPosition = positionCentered + positionOffset;
-        
+        //WARNING!
+        //Scale must be set before position because the position is dependant on the scale.
+
         //scale
         float partSelectorSurfaceScale = partType.GetPartSelectorSurfaceScale();
         Vector3 localScale = new Vector3(1,1,1) + (MathHelper.AbsVector3(direction) * (partType.GetPartSelectorSurfaceScale() - 1)); 
         transform.localScale = localScale;
 
+        //position
+        Vector3 positionCentered = .5f * direction;
+        Vector3 positionOffset = .5f * MathHelper.MultiplyVector3Coords(transform.localScale, direction);
+        transform.localPosition = positionCentered + positionOffset;
+
+        //rotattion
+        //...
+        
+       
+
     }
+}
 }

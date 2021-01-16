@@ -8,7 +8,10 @@ namespace Robot{
 public class RobotManipulator : MonoBehaviour
 {
     [SerializeField]
-    RobotManipulatorSettings settings;
+    bool renderHitSelections = false;
+
+    [SerializeField]
+    Vector3 initialPartPosition = new Vector3(0,10,0);
     
     RobotHead robotHead = null;
     NodeParent nodeParent = null;
@@ -29,6 +32,41 @@ public class RobotManipulator : MonoBehaviour
     public PartParent GetPartParent(){
         return partParent;
     }
+    public bool GetRenderHitSelections(){
+        return renderHitSelections;
+    }
+
+    public NodeType GetNodeType<T>() where T : MonoBehaviour{
+        NodeType nodeType = transform.Find("Node Types").GetComponentsInChildren<T>()[0].GetComponent<NodeType>();
+
+        return nodeType;
+
+    }
+
+    public NodeType[] GetNodeTypes(){
+        NodeType[] nodeTypes = transform.Find("Node Types").GetComponentsInChildren<NodeType>();
+
+        return nodeTypes;
+
+    }
+
+    public PartType GetPartType<T>() where T : MonoBehaviour{
+
+        PartType partType = transform.Find("Part Types").GetComponentsInChildren<T>()[0].GetComponent<PartType>();
+
+        return partType;
+
+    }
+
+    
+
+    public PartType[] GetPartTypes(){
+        PartType[] partTypes = transform.Find("Part Types").GetComponentsInChildren<PartType>();
+
+        return partTypes;
+
+    }
+
 
      public void CreateNewRobot(){
 
@@ -37,7 +75,13 @@ public class RobotManipulator : MonoBehaviour
         this.robotHead = newRobot.AddComponent<RobotHead>();
         this.nodeParent = this.robotHead.AddPieceParent<NodeParent>("Node");
         this.partParent = this.robotHead.AddPieceParent<PartParent>("Part");
-        AddPart<CommandCubeType>();
+        CreateInitialPart();
+    }
+
+    void CreateInitialPart(){
+        Part part = AddPart<CommandCubeType>();
+        part.SetPosition(initialPartPosition);
+
     }
 
     public void DestroyImmediateRobot(){
@@ -48,11 +92,13 @@ public class RobotManipulator : MonoBehaviour
     }
 
     public void AddNode(NodeType nodeType){
+        /*
         PieceType pieceType = nodeType.GetComponent<PieceType>();
         GameObject newNodeGameObject = AddPiece(pieceType);
         
         Node newNode = newNodeGameObject.AddComponent<Node>();
         newNode.transform.parent = robotManipulator.GetNodeParent().transform;
+        */
 
     }
 
@@ -61,18 +107,14 @@ public class RobotManipulator : MonoBehaviour
     }
 
 
-    public PartManipulator(RobotManipulator robotManipulator) : base(robotManipulator){
-        settings = robotManipulator.GetRobotManipulatorSettings().GetPartManipulatorSettings();
-    }
-
-    public void AddPart<T>() where T : MonoBehaviour {
-        PartType partType = robotManipulator.GetRobotManipulatorSettings().GetPartType<T>();
-        AddPart(partType);
+    public Part AddPart<T>() where T : MonoBehaviour {
+        PartType partType = GetPartType<T>();
+        return AddPart(partType);
 
     }
 
-    public void AddPart(PartType partType){
-        Part part = Part.Create(partType);
+    public Part AddPart(PartType partType){
+        return Part.Create(robotHead, partParent, partType, this);
 
     }
 
