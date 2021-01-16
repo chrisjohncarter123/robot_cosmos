@@ -17,6 +17,10 @@ namespace Robot
 
         Dictionary<Vector3, PartSelectorSurface> surfaces;
 
+        void Start(){
+            this.surfaces = new Dictionary<Vector3, PartSelectorSurface>();
+        }
+
         public Piece GetPiece(){
             return this.piece;
         }
@@ -55,12 +59,12 @@ namespace Robot
             
             
             //Add PartSelectorSurfaces
-            rightSurface = PartSelectorSurface.Create(part, partType, settings, new Vector3(1,0,0), "Part Selector Surface - Right");
-            leftSurface = PartSelectorSurface.Create(part, partType, settings, new Vector3(-1,0,0), "Part Selector Surface - Left");
-            upSurface = PartSelectorSurface.Create(part, partType, settings, new Vector3(0,1,0), "Part Selector Surface - Top");
-            rightSurface = PartSelectorSurface.Create(part, partType, settings, new Vector3(0,-1,0), "Part Selector Surface - Bottom");
-            rightSurface = PartSelectorSurface.Create(part, partType, settings, new Vector3(0,0,1), "Part Selector Surface - Forward");
-            rightSurface = PartSelectorSurface.Create(part, partType, settings, new Vector3(0,0,-1), "Part Selector Surface - Back");
+            surfaces[new Vector3( 1, 0, 0)] = PartSelectorSurface.Create(part, partType, settings, new Vector3( 1, 0, 0), "Part Selector Surface - Right");
+            surfaces[new Vector3(-1, 0, 0)] = PartSelectorSurface.Create(part, partType, settings, new Vector3(-1, 0, 0), "Part Selector Surface - Left");
+            surfaces[new Vector3( 0, 1, 0)] = PartSelectorSurface.Create(part, partType, settings, new Vector3( 0, 1, 0), "Part Selector Surface - Top");
+            surfaces[new Vector3( 0,-1, 0)] = PartSelectorSurface.Create(part, partType, settings, new Vector3( 0,-1, 0), "Part Selector Surface - Bottom");
+            surfaces[new Vector3( 0, 0, 1)] = PartSelectorSurface.Create(part, partType, settings, new Vector3( 0, 0, 1), "Part Selector Surface - Forward");
+            surfaces[new Vector3( 0, 0,-1)] = PartSelectorSurface.Create(part, partType, settings, new Vector3( 0, 0,-1), "Part Selector Surface - Back");
 
             return part;
 
