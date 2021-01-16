@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace RobotPhysics{
 public class CollisionDetector : MonoBehaviour
 {
     public List<Collider> collisions;
@@ -21,4 +22,5 @@ public class CollisionDetector : MonoBehaviour
     {
         collisions.Remove(other);
     }
+}
 }

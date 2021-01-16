@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace RobotPhysics{
 public class PseudoPhysicsObject : MonoBehaviour
 {
     [SerializeField]
@@ -63,4 +64,5 @@ public class PseudoPhysicsObject : MonoBehaviour
     }
 
 
+}
 }

@@ -60,6 +60,8 @@
      <Compile Include="Assets\Scripts\GUI\Robot\NodeValuePanelGUI.cs" />
      <Compile Include="Assets\Scripts\GUI\Robot\ProgramBackgroundPanelGUI.cs" />
      <Compile Include="Assets\Scripts\GUI\Robot\SelectedComputerInformationPanelGUI.cs" />
+     <Compile Include="Assets\Scripts\GameObjectHelper.cs" />
+     <Compile Include="Assets\Scripts\MathHelper.cs" />
      <Compile Include="Assets\Scripts\Physics\CollisionDetector.cs" />
      <Compile Include="Assets\Scripts\Physics\PseudoPhysicsObject.cs" />
      <Compile Include="Assets\Scripts\Robot\Node.cs" />
@@ -68,6 +70,7 @@
      <Compile Include="Assets\Scripts\Robot\NodeFlowInput.cs" />
      <Compile Include="Assets\Scripts\Robot\NodeFlowOutput.cs" />
      <Compile Include="Assets\Scripts\Robot\NodeManipulator.cs" />
+     <Compile Include="Assets\Scripts\Robot\NodeManipulatorSettings.cs" />
      <Compile Include="Assets\Scripts\Robot\NodeParent.cs" />
      <Compile Include="Assets\Scripts\Robot\NodePoint.cs" />
      <Compile Include="Assets\Scripts\Robot\NodeSettings.cs" />
@@ -84,6 +87,7 @@
      <Compile Include="Assets\Scripts\Robot\PartCategory.cs" />
      <Compile Include="Assets\Scripts\Robot\PartGroup.cs" />
      <Compile Include="Assets\Scripts\Robot\PartManipulator.cs" />
+     <Compile Include="Assets\Scripts\Robot\PartManipulatorSettings.cs" />
      <Compile Include="Assets\Scripts\Robot\PartParent.cs" />
      <Compile Include="Assets\Scripts\Robot\PartSelector.cs" />
      <Compile Include="Assets\Scripts\Robot\PartSelectorHit.cs" />

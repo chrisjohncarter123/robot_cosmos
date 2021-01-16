@@ -16,7 +16,7 @@ namespace Robot{
 
        
 
-        protected GameObject AddPiece(PieceType pieceType){
+        protected static GameObject AddPiece(PieceType pieceType){
             GameObject newPieceGameObject = new GameObject();
             newPieceGameObject.name = pieceType.GetPieceTypeName();
             return newPieceGameObject;

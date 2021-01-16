@@ -6,8 +6,11 @@ namespace Robot{
 public class PartManipulator : PieceManipulator
 {
     
+    private PartManipulatorSettings settings;
+
+
     public PartManipulator(RobotManipulator robotManipulator) : base(robotManipulator){
-        
+        settings = robotManipulator.GetRobotManipulatorSettings().GetPartManipulatorSettings();
     }
 
     public void AddPart<T>() where T : MonoBehaviour {
@@ -17,61 +20,11 @@ public class PartManipulator : PieceManipulator
     }
 
     public void AddPart(PartType partType){
-        PieceType pieceType = partType.GetComponent<PieceType>();
-        GameObject newPartGameObject = AddPiece(pieceType);
+        Part part = Part.Create(partType);
         
-        //Transform
-        newPartGameObject.transform.position = new Vector3(0,8,0);
-        newPartGameObject.transform.position += partType.GetPositionOffset();
-        newPartGameObject.transform.eulerAngles += partType.GetRotationOffset();
-        newPart.transform.localScale = partType.GetScale();
-        
-        //Add components
-        Part newPart = newPartGameObject.AddComponent<Part>();
-        newPart.SetPartType(partType);
-        newPart.transform.parent = robotManipulator.GetPartParent().transform;
-        
-        AddRendererComponentsToGameObject(newPartGameObject, partType);
-        
-
-        //Add PartSelectorSurfaces
-        CreatePartSelectorSurface(partType, newPartGameObject, new Vector3(1,0,0), "Part Selector Surface - Right");
-        CreatePartSelectorSurface(partType, newPartGameObject, new Vector3(-1,0,0), "Part Selector Surface - Left");
-        CreatePartSelectorSurface(partType, newPartGameObject, new Vector3(0,1,0), "Part Selector Surface - Top");
-        CreatePartSelectorSurface(partType, newPartGameObject, new Vector3(0,-1,0), "Part Selector Surface - Bottom");
-        CreatePartSelectorSurface(partType, newPartGameObject, new Vector3(0,0,1), "Part Selector Surface - Forward");
-        CreatePartSelectorSurface(partType, newPartGameObject, new Vector3(0,0,-1), "Part Selector Surface - Back");
-
-
     }
 
-    private GameObject CreatePartSelectorSurface(PartType partType, GameObject newPartGameObject, Vector3 direction, string name){
-        GameObject newSurface = new GameObject();
-        newSurface.name = name;
-        AddRendererComponentsToGameObject(newSurface, partType);
-        
-        //Transform
-        newSurface.transform.parent = newPartGameObject.transform;
-        float partSelectorSurfaceScale = partType.GetPartSelectorSurfaceScale();
-        newSurface.transform.localScale = new Vector3(1,1,1);// + ( direction * partSelectorSurfaceScale );
-        newSurface.transform.localScale += direction * (partType.GetPartSelectorSurfaceScale()); 
-        newSurface.transform.localPosition = (direction * (1.5f + partSelectorSurfaceScale));
-        //newSurface.transform.localPosition += direction * (partType.GetPartSelectorSurfaceScale() * 1.5f); 
-        return newSurface;
-        
-
-    }
-
-    private void AddRendererComponentsToGameObject(GameObject gameObject, PartType partType){
-        MeshFilter meshFilter = gameObject.AddComponent<MeshFilter>();
-        meshFilter.mesh = partType.GetMesh();
-        MeshRenderer meshRenderer = gameObject.AddComponent<MeshRenderer>();
-        meshRenderer.material = partType.GetMaterial();
-        BoxCollider boxCollider = gameObject.AddComponent<BoxCollider>();
-        boxCollider.material = partType.GetPhysicMaterial();
-
-    }
-
+    
 
 
     public void DeletePart(Part part){

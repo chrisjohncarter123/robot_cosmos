@@ -2,9 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 namespace Robot{
+    [RequireComponent(typeof(NodeManipulatorSettings))]
+    [RequireComponent(typeof(PartManipulatorSettings))]
+    
     public class RobotManipulatorSettings : MonoBehaviour
     {
+        public NodeManipulatorSettings GetNodeManipulatorSettings(){
+            return gameObject.GetComponent<NodeManipulatorSettings>();
+        }
+
+        public PartManipulatorSettings GetPartManipulatorSettings(){
+            return gameObject.GetComponent<PartManipulatorSettings>();
+        }
 
         public NodeType GetNodeType<T>() where T : MonoBehaviour{
             NodeType nodeType = transform.Find("Node Types").GetComponentsInChildren<T>()[0].GetComponent<NodeType>();
