@@ -7,13 +7,10 @@ namespace Robot{
     public class PartSelector : MonoBehaviour
     {
         [SerializeField]
-        Vector3 rayDirectionOffset = new Vector3(0,0,0);
+        PartSelectorGraphic partSelectedGraphic;
 
         [SerializeField]
-        GameObject partSelectedGraphic;
-
-        [SerializeField]
-        GameObject partHitGraphic;
+        PartSelectorGraphic partHitGraphic;
 
         [SerializeField]
         bool selectAllParts = true;
@@ -29,13 +26,43 @@ namespace Robot{
 
         [SerializeField]
         PartType[] partTypes;
+        
+        PartSelectorSurface selectedPartSurface;
 
-        
-        
-        Part selectedPart;
+        [SerializeField]
+        HitType hitType;
+
+        [SerializeField]
+        HitTransform hitTransform;
+
+        public enum HitType{
+            Part,
+            Surface
+        }
+
+        public enum HitTransform{
+            Camera,
+            GameObject
+        }
+
+        [SerializeField]
+        Transform hitTransformGameObject;
+
+        [SerializeField]
+        Vector3 hitTransformRayDirectionOffset = new Vector3(0,0,0);
+
+
 
         public Part GetSelectedPart(){
-            return selectedPart;
+            return selectedPartSurface.GetPart();
+        }
+
+        public PartSelectorSurface GetSelectedSurface(){
+            return selectedPartSurface;
+        }
+
+        public HitType GetHitType(){
+            return hitType;
         }
         // Start is called before the first frame update
         void Start()
@@ -46,66 +73,90 @@ namespace Robot{
         // Update is called once per frame
         void Update()
         {
-            if(selectedPart){
-                UpdateGraphic(partSelectedGraphic, selectedPart);
-            }
+            UpdateGraphic(partSelectedGraphic, selectedPartSurface);
             
             UpdateRaycast();
             
         }
 
-        private void UpdateGraphic(GameObject graphic, Part part){
-            if(graphic && part)
+        private void UpdateGraphic(PartSelectorGraphic graphic, PartSelectorSurface surface){
+            if(graphic && surface)
             {
-                graphic.GetComponent<Renderer>().enabled = true;
-                graphic.transform.position = part.transform.position;
-                graphic.transform.rotation = part.transform.rotation;
+                graphic.UpdateGraphic(this, surface);
+
+            }
+        }
+
+        private void DisableGraphic(PartSelectorGraphic graphic){
+            if(graphic){
+                graphic.DisableGraphic();
             }
         }
 
         private void UpdateRaycast(){
             RaycastHit hit;
-            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Vector3 rayDirection = transform.forward + rayDirectionOffset;
-            rayDirection.Normalize();
-            Ray ray = new Ray(transform.position, rayDirection);
+            Ray ray;
+            if(hitTransform == HitTransform.Camera){
+                ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            partHitGraphic.GetComponent<Renderer>().enabled = false;
+            }
+            else if(hitTransform == HitTransform.GameObject){
+                Vector3 rayDirection = hitTransformGameObject.forward + hitTransformRayDirectionOffset;
+                rayDirection.Normalize();
+                ray = new Ray(hitTransformRayDirectionOffset.position, rayDirection);
 
-            Part part = null;
+            }
             
-            if (Physics.Raycast(ray, out hit)) {
-                Transform objectHit = hit.transform;
-                part = objectHit.GetComponent<Part>();
-                
-                if(part){
+            
 
-                    if(selectAllParts || 
-                      (usePartCategory && part.GetPartType().MatchesCategory(this.partCategory)) ||
-                      (usePartTypes && partTypes.Contains (part.GetPartType()))){
-
-                        UpdateGraphic(this.partHitGraphic, part);
-
-                        if(Input.GetMouseButtonDown(0)){
-                            SelectPart(part);
-                        }
-                    }
-
-                }
+            if(partHitGraphic){
+                //partHitGraphic.GetComponent<Renderer>().enabled = false;
             }
 
-        }
+            Part part = null;
+            PartSelectorSurface partSurface = null;
+            bool didHit = false;
+            
+            if (Physics.Raycast(ray, out hit)) {
+                
+                Transform objectHit = hit.transform;
+                partSurface = objectHit.GetComponent<PartSelectorSurface>();
+                
+                if (partSurface){
 
-        void SelectPart(Part selectedPart){
-            this.selectedPart = selectedPart;
 
+                    
+                    part = partSurface.GetPart();
 
-        }
+                    Debug.Log("Hit " + hit.transform.gameObject.name);
 
-        void DeselectPart(){
-            partSelectedGraphic.GetComponent<Renderer>().enabled = false;
-            selectedPart = null;
+                    if(selectAllParts || 
+                    (usePartCategory && part.GetPartType().MatchesCategory(this.partCategory)) ||
+                    (usePartTypes && partTypes.Contains (part.GetPartType()))){
 
+                        UpdateGraphic(this.partHitGraphic, partSurface);
+                        didHit = true;
+                        
+                    }
+                }
+            }
+            if(!didHit){
+                DisableGraphic(partHitGraphic);
+
+            }
+           
+            if(Input.GetMouseButtonDown(0)){
+                
+                if(didHit){
+                    this.selectedPartSurface = selectedPartSurface;
+                }
+                else{
+                    DisableGraphic(partSelectedGraphic);
+                    partSurface = null;
+                }
+                
+            }
+            
         }
     }
 }
