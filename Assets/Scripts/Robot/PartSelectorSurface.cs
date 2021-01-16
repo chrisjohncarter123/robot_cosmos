@@ -5,9 +5,16 @@ using UnityEngine;
 namespace Robot{
 public class PartSelectorSurface : MonoBehaviour
 {
+    [SerializeField]
     Vector3 direction;
+
+    [SerializeField]
     Part part;
+
+    [SerializeField]
     PartType partType;
+
+    [SerializeField]
     RobotManipulator manipulator;
 
     public void SetPartType(PartType partType){
@@ -39,6 +46,8 @@ public class PartSelectorSurface : MonoBehaviour
     public static PartSelectorSurface Create(Part part, PartType partType, RobotManipulator manipulator, Vector3 direction, string name){
         GameObject newSurface = new GameObject();
         newSurface.name = name;
+
+        Debug.Log(part);
 
         PartSelectorSurface newPartSelectorSurface = newSurface.AddComponent<PartSelectorSurface>();
         newPartSelectorSurface.SetPartType(partType);

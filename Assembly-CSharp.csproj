@@ -86,7 +86,7 @@
      <Compile Include="Assets\Scripts\Robot\PartGroup.cs" />
      <Compile Include="Assets\Scripts\Robot\PartParent.cs" />
      <Compile Include="Assets\Scripts\Robot\PartSelector.cs" />
-     <Compile Include="Assets\Scripts\Robot\PartSelectorHit.cs" />
+     <Compile Include="Assets\Scripts\Robot\PartSelectorGraphic.cs" />
      <Compile Include="Assets\Scripts\Robot\PartSelectorSurface.cs" />
      <Compile Include="Assets\Scripts\Robot\PartType.cs" />
      <Compile Include="Assets\Scripts\Robot\Parts\AttachPart.cs" />

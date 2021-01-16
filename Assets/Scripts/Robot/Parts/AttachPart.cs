@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Robot.Parts{
-
-[RequireComponent(typeof(PartSelector))]
+    
 public class AttachPart : MonoBehaviour
 {
     [SerializeField]
@@ -17,7 +16,7 @@ public class AttachPart : MonoBehaviour
     PartSelector partSelector;
 
     void Start(){
-        partSelector = gameObject.GetComponent<PartSelector>();
+        
     }
 
     public void UsePart(){
