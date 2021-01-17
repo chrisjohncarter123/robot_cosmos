@@ -208,7 +208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3c0994d7f3cd4c34b2859ba15fbd415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayDirectionOffset: {x: 0, y: 0, z: 0}
   partSelectedGraphic: {fileID: 602235719}
   partHitGraphic: {fileID: 276219793}
   selectAllParts: 1
@@ -218,6 +217,8 @@ MonoBehaviour:
   partTypes: []
   hitType: 1
   hitTransform: 0
+  hitTransformGameObject: {fileID: 0}
+  hitTransformRayDirectionOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &109272048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -608,6 +609,8 @@ Transform:
   - {fileID: 1790921981}
   - {fileID: 1750662147}
   - {fileID: 1529163990}
+  - {fileID: 516125846}
+  - {fileID: 664791507}
   m_Father: {fileID: 133536210}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1043,6 +1046,75 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categoryName: Joint
   categoryDescription: Parts that can create compound movements between other parts.
+--- !u!1 &516125845
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 516125846}
+  - component: {fileID: 516125848}
+  - component: {fileID: 516125847}
+  m_Layer: 0
+  m_Name: Part Type - Attacher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &516125846
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516125845}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 331282740}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &516125847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516125845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 527b739ec62064acf83b1b26f36738f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positionOffset: {x: 0, y: 0, z: 0}
+  rotationOffset: {x: 0, y: 0, z: 0}
+  scale: {x: 1, y: 1, z: 1}
+  partSelectorDistance: 1
+  usePartScaleForPartSelectorHitScale: 1
+  partSelectorHitScale: {x: 1, y: 1, z: 1}
+  partSelectorSurfaceScale: 0.1
+  mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  material: {fileID: 2100000, guid: 1a3d0ddcc27a9482480bfa04c4e47024, type: 2}
+  physicMaterial: {fileID: 13400000, guid: 4a45c3c92a95d45b39db5ececf49b7ad, type: 2}
+  partCategory: {fileID: 899872332}
+--- !u!114 &516125848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516125845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2198fa7e8afcf498f976002675b71cef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pieceTypeName: Jet
+  pieceTypeDescription: Can be used to apply a force.
 --- !u!1 &580676310
 GameObject:
   m_ObjectHideFlags: 0
@@ -1312,6 +1384,75 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9954db602704751b7e9294f0a7ee8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &664791506
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 664791507}
+  - component: {fileID: 664791509}
+  - component: {fileID: 664791508}
+  m_Layer: 0
+  m_Name: Part Type - Grabber
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &664791507
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664791506}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 331282740}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &664791508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664791506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 527b739ec62064acf83b1b26f36738f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positionOffset: {x: 0, y: 0, z: 0}
+  rotationOffset: {x: 0, y: 0, z: 0}
+  scale: {x: 1, y: 1, z: 1}
+  partSelectorDistance: 1
+  usePartScaleForPartSelectorHitScale: 1
+  partSelectorHitScale: {x: 1, y: 1, z: 1}
+  partSelectorSurfaceScale: 0.1
+  mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  material: {fileID: 2100000, guid: 1a3d0ddcc27a9482480bfa04c4e47024, type: 2}
+  physicMaterial: {fileID: 13400000, guid: 4a45c3c92a95d45b39db5ececf49b7ad, type: 2}
+  partCategory: {fileID: 899872332}
+--- !u!114 &664791509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664791506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2198fa7e8afcf498f976002675b71cef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pieceTypeName: Jet
+  pieceTypeDescription: Can be used to apply a force.
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
