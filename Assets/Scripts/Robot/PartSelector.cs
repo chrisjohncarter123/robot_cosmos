@@ -51,7 +51,21 @@ namespace Robot{
         [SerializeField]
         Vector3 hitTransformRayDirectionOffset = new Vector3(0,0,0);
 
+        public delegate void OnSelect();
+        public delegate void OnHit();
 
+        OnSelect onSelect = null;
+        OnHit onHit = null;
+
+        public void AddOnSelect(OnSelect onSelect){
+            
+            this.onSelect += onSelect;
+
+        }
+        public void AddOnHit(OnHit onHit){
+            this.onHit += onHit;
+
+        }
 
         public Part GetSelectedPart(){
             return selectedPartSurface.GetPart();
@@ -95,7 +109,7 @@ namespace Robot{
 
         private void UpdateRaycast(){
             RaycastHit hit;
-            Ray ray;
+            Ray ray = new Ray();
             if(hitTransform == HitTransform.Camera){
                 ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -103,15 +117,10 @@ namespace Robot{
             else if(hitTransform == HitTransform.GameObject){
                 Vector3 rayDirection = hitTransformGameObject.forward + hitTransformRayDirectionOffset;
                 rayDirection.Normalize();
-                ray = new Ray(hitTransformRayDirectionOffset.position, rayDirection);
+                ray = new Ray(hitTransformRayDirectionOffset, rayDirection);
 
             }
-            
-            
 
-            if(partHitGraphic){
-                //partHitGraphic.GetComponent<Renderer>().enabled = false;
-            }
 
             Part part = null;
             PartSelectorSurface partSurface = null;

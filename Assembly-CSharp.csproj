@@ -89,7 +89,8 @@
      <Compile Include="Assets\Scripts\Robot\PartSelectorGraphic.cs" />
      <Compile Include="Assets\Scripts\Robot\PartSelectorSurface.cs" />
      <Compile Include="Assets\Scripts\Robot\PartType.cs" />
-     <Compile Include="Assets\Scripts\Robot\Parts\AttachPart.cs" />
+     <Compile Include="Assets\Scripts\Robot\Parts\Attacher.cs" />
+     <Compile Include="Assets\Scripts\Robot\Parts\AttacherType.cs" />
      <Compile Include="Assets\Scripts\Robot\Parts\Block.cs" />
      <Compile Include="Assets\Scripts\Robot\Parts\BlockType.cs" />
      <Compile Include="Assets\Scripts\Robot\Parts\CommandCube.cs" />
@@ -99,8 +100,8 @@
      <Compile Include="Assets\Scripts\Robot\Parts\Jet.cs" />
      <Compile Include="Assets\Scripts\Robot\Parts\JetType.cs" />
      <Compile Include="Assets\Scripts\Robot\Parts\RayWeapon.cs" />
-     <Compile Include="Assets\Scripts\Robot\Parts\Shooter.cs" />
-     <Compile Include="Assets\Scripts\Robot\Parts\ShooterWeapon.cs" />
+     <Compile Include="Assets\Scripts\Robot\Parts\Selector.cs" />
+     <Compile Include="Assets\Scripts\Robot\Parts\SelectorType.cs" />
      <Compile Include="Assets\Scripts\Robot\Piece.cs" />
      <Compile Include="Assets\Scripts\Robot\PieceCategory.cs" />
      <Compile Include="Assets\Scripts\Robot\PieceParent.cs" />
