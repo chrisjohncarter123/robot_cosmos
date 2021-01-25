@@ -137,8 +137,11 @@ public class RobotManipulator : MonoBehaviour
 
     }
 
-    public void AttachPart(Part basePart, Part attachingPart){
-        
+    public void AttachPart(Part basePart, PartSelectorSurface surface, Part attachingPart){
+        attachingPart.transform.position = surface.GetAttachingPosition();
+        attachingPart.transform.eulerAngles = surface.GetAttachingEulerAngles();
+       
+
     }
 
     
