@@ -8,6 +8,9 @@ public class Attacher : MonoBehaviour
 {
     [SerializeField]
     PartType partType;
+
+    [SerializeField]
+    PartSelector partSelector;
         
     void Start(){
         partSelector.AddOnSelect(UsePart);
@@ -18,5 +21,7 @@ public class Attacher : MonoBehaviour
         robotManipulator.AddPart(partType);
 
     }
+
+
 }
 }
