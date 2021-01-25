@@ -106,6 +106,17 @@ public class RobotManipulator : MonoBehaviour
 
     }
 
+    public Part AddPart<T>() where T : MonoBehaviour {
+        PartType partType = GetPartType<T>();
+        return AddPart(partType);
+
+    }
+
+    public Part AddPart(PartType partType){
+        return Part.Create(robotHead, partParent, partType, this);
+
+    }
+
 
     public Part AddPart<T>(PartSelectorSurface surface) where T : MonoBehaviour {
         PartType partType = GetPartType<T>();
