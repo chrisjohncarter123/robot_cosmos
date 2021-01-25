@@ -137,6 +137,10 @@ public class RobotManipulator : MonoBehaviour
 
     }
 
+    public void AttachPart(Part basePart, Part attachingPart){
+
+    }
+
     
 
 
