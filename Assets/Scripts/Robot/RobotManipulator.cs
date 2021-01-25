@@ -138,13 +138,14 @@ public class RobotManipulator : MonoBehaviour
     }
 
     public void AttachPart(Part basePart, Part attachingPart){
-
+        
     }
 
     
 
 
     public void DeletePart(Part part){
+        Destroy(part.gameObject);
 
     }
 
