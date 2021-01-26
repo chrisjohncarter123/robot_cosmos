@@ -43,11 +43,10 @@ public class PartSelectorSurface : MonoBehaviour
     }
 
 
-    public static PartSelectorSurface Create(Part part, PartType partType, RobotManipulator manipulator, Vector3 direction, string name){
+    public static PartSelectorSurface Create(Part part, PartType partType, RobotManipulator manipulator, PartSurfaceType surfaceType){
         GameObject newSurface = new GameObject();
-        newSurface.name = name;
-
-        Debug.Log(part);
+        newSurface.name =  surfaceType.GetName();
+        Vector3 direction = surfaceType.GetDirection();
 
         PartSelectorSurface newPartSelectorSurface = newSurface.AddComponent<PartSelectorSurface>();
         newPartSelectorSurface.SetPartType(partType);
@@ -89,6 +88,16 @@ public class PartSelectorSurface : MonoBehaviour
 
     }
 
-    
+    public Vector3 GetAttachingPosition()
+    {
+        return part.transform.position + partType.RelativeAttachmentPositionOffset;
+    }
+
+    public Vector3 GetAttachingEulerAngles()
+    {
+        return transform.eulerAngles + partType.RelativeAttachmentEulerAnglesOffset;
+    }
+
+
 }
 }
