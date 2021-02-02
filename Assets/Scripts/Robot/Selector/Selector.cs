@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 
 namespace Robot{
-    public class PartSelector : MonoBehaviour
+    public class Selector : MonoBehaviour
     {
         [SerializeField]
         PartSelectorGraphic partSelectedGraphic;
@@ -27,7 +27,8 @@ namespace Robot{
         [SerializeField]
         PartType[] partTypes;
         
-        PartSelectorSurface selectedPartSurface;
+        protected PartSurface selectedPartSurface;
+        protected Part selectedPart;
 
         [SerializeField]
         HitType hitType;
@@ -37,7 +38,8 @@ namespace Robot{
 
         public enum HitType{
             Part,
-            Surface
+            Surface,
+            Handle
         }
 
         public enum HitTransform{
@@ -71,7 +73,7 @@ namespace Robot{
             return selectedPartSurface.GetPart();
         }
 
-        public PartSelectorSurface GetSelectedSurface(){
+        public PartSurface GetSelectedSurface(){
             return selectedPartSurface;
         }
 
@@ -93,7 +95,7 @@ namespace Robot{
             
         }
 
-        private void UpdateGraphic(PartSelectorGraphic graphic, PartSelectorSurface surface){
+        private void UpdateGraphic(PartSelectorGraphic graphic, PartSurface surface){
             if(graphic && surface)
             {
                 graphic.UpdateGraphic(this, surface);
@@ -105,6 +107,27 @@ namespace Robot{
             if(graphic){
                 graphic.DisableGraphic();
             }
+        }
+
+        protected virtual void OnSelectPart()
+        {
+            
+        }
+        protected virtual void OnDeselectPart()
+        {
+            
+        }
+
+        private void SelectPart(PartSurface selectedSurface)
+        {
+            OnSelectPart();
+        }
+
+        private void DeselectPart()
+        {
+            DisableGraphic(partSelectedGraphic);
+            selectedPartSurface = null;
+            OnDeselectPart();
         }
 
         private void UpdateRaycast(){
@@ -123,25 +146,21 @@ namespace Robot{
 
 
             Part part = null;
-            PartSelectorSurface partSurface = null;
+            PartSurface partSurface = null;
             bool didHit = false;
             
             if (Physics.Raycast(ray, out hit)) {
                 
                 Transform objectHit = hit.transform;
-                partSurface = objectHit.GetComponent<PartSelectorSurface>();
+                partSurface = objectHit.GetComponent<PartSurface>();
                 
                 if (partSurface){
 
-
-                    
                     part = partSurface.GetPart();
 
-                    Debug.Log("Hit " + hit.transform.gameObject.name);
-
                     if(selectAllParts || 
-                    (usePartCategory && part.GetPartType().MatchesCategory(this.partCategory)) ||
-                    (usePartTypes && partTypes.Contains (part.GetPartType()))){
+                       (usePartCategory && part.GetPartType().MatchesCategory(this.partCategory)) ||
+                       (usePartTypes && partTypes.Contains (part.GetPartType()))){
 
                         UpdateGraphic(this.partHitGraphic, partSurface);
                         didHit = true;
@@ -157,11 +176,12 @@ namespace Robot{
             if(Input.GetMouseButtonDown(0)){
                 
                 if(didHit){
-                    this.selectedPartSurface = selectedPartSurface;
+                    SelectPart(selectedPartSurface);
                 }
-                else{
-                    DisableGraphic(partSelectedGraphic);
-                    partSurface = null;
+                else
+                {
+                    DeselectPart();
+                   
                 }
                 
             }
