@@ -12,18 +12,19 @@ public class PartSelectorGraphic : MonoBehaviour
 
     }
 
-    public void UpdateGraphic(Selector selector, PartSurface surface){
+    public void UpdateGraphic(PartSelector partSelector, PartSurface surface){
         renderer.enabled = true;
-        UpdatePositionRotationScale(selector, surface);
+        UpdatePositionRotationScale(partSelector, surface);
 
     }
     public void DisableGraphic(){
         renderer.enabled = false;
     }
-    public void UpdatePositionRotationScale(Selector selector, PartSurface surface){
+    public void UpdatePositionRotationScale(PartSelector partSelector, PartSurface surface){
         
         Part part = surface.GetPart();
         PartType partType = part.GetPartType();
+        /*
         Selector.HitType hitType = selector.GetHitType();
 
         if(hitType == Selector.HitType.Surface)
@@ -44,6 +45,7 @@ public class PartSelectorGraphic : MonoBehaviour
         {
             
         }
+        */
 
         
         

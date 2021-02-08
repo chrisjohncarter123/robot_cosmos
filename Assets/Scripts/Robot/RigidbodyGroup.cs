@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PartSelector : MonoBehaviour
+public class RigidbodyGroup : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
