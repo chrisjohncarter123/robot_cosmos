@@ -40,12 +40,12 @@ public class PartSurface : MonoBehaviour
 
     public static PartSurface Create(Part part, PartType partType, RobotManipulator manipulator, PartSurfaceType surfaceType){
         GameObject newSurface = new GameObject();
-        newSurface.name =  surfaceType.GetName();
-        Vector3 direction = surfaceType.GetDirection();
+        newSurface.name =  surfaceType.gameObject.name;
+       // Vector3 direction = surfaceType.GetDirection();
 
         PartSurface newPartSurface = newSurface.AddComponent<PartSurface>();
         newPartSurface.SetPartType(partType);
-        newPartSurface.SetDirection(direction);
+     //   newPartSurface.SetDirection(direction);
         newPartSurface.SetPart(part);
 
         
@@ -85,12 +85,14 @@ public class PartSurface : MonoBehaviour
 
     public Vector3 GetAttachingPosition()
     {
-        return part.transform.position + partType.RelativeAttachmentPositionOffset;
+        return Vector3.back;
+     //   return part.transform.position + partType.RelativeAttachmentPositionOffset;
     }
 
     public Vector3 GetAttachingEulerAngles()
     {
-        return transform.eulerAngles + partType.RelativeAttachmentEulerAnglesOffset;
+        return Vector3.back;
+      ///  return transform.eulerAngles + partType.RelativeAttachmentEulerAnglesOffset;
     }
 
 

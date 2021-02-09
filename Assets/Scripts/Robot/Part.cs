@@ -16,10 +16,7 @@ namespace Robot
         Node prgoramNode;
 
         Piece piece;
-
-        RobotManipulator manipulator;
-
-        Dictionary<Vector3, PartSurface> surfaces = null;
+        
 
         void Start(){
             
@@ -46,17 +43,6 @@ namespace Robot
 
         }
 
-        public void SetRobotManipulator(RobotManipulator manipulator){
-            this.manipulator = manipulator;
-        }
-
-        public void AddSurface(Vector3 direction, string name){
-            if(this.surfaces == null){
-                this.surfaces = new Dictionary<Vector3, PartSurface>();
-            }
-            this.surfaces[direction] = PartSurface.Create(this, partType, manipulator, direction, name);
-
-        }
 
         public void SetPosition(Vector3 position){
             transform.position = position;
@@ -77,7 +63,7 @@ namespace Robot
             //Add components
             Part part = newPartGameObject.AddComponent<Part>();
             part.SetRobotHead(robotHead);
-            part.SetRobotManipulator(manipulator);
+
             part.SetPartParent(partParent);
             part.SetPartType(partType);
             
@@ -87,13 +73,7 @@ namespace Robot
             AddBoxCollider(newPartGameObject, partType);
             
             
-            //Add PartSelectorSurfaces
-            part.AddSurface(new Vector3( 1, 0, 0), "Part Selector Surface - Right");
-            part.AddSurface(new Vector3(-1, 0, 0), "Part Selector Surface - Left");
-            part.AddSurface(new Vector3( 0, 1, 0), "Part Selector Surface - Up");
-            part.AddSurface(new Vector3( 0,-1, 0), "Part Selector Surface - Down");
-            part.AddSurface(new Vector3( 0, 0, 1), "Part Selector Surface - Forward");
-            part.AddSurface(new Vector3( 0, 0,-1), "Part Selector Surface - Back");
+
             
             return part;
 
