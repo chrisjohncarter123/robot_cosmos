@@ -12,7 +12,7 @@ public class PartSelectorGraphic : MonoBehaviour
 
     }
 
-    public void UpdateGraphic(PartSelector selector, PartSelectorSurface surface){
+    public void UpdateGraphic(PartSelector selector, PartSurface surface){
         renderer.enabled = true;
         UpdatePositionRotationScale(selector, surface);
 
@@ -20,7 +20,7 @@ public class PartSelectorGraphic : MonoBehaviour
     public void DisableGraphic(){
         renderer.enabled = false;
     }
-    public void UpdatePositionRotationScale(PartSelector selector, PartSelectorSurface surface){
+    public void UpdatePositionRotationScale(PartSelector selector, PartSurface surface){
 
         
 

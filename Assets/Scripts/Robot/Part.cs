@@ -19,7 +19,7 @@ namespace Robot
 
         RobotManipulator manipulator;
 
-        Dictionary<Vector3, PartSelectorSurface> surfaces = null;
+        Dictionary<Vector3, PartSurface> surfaces = null;
 
         void Start(){
             
@@ -52,9 +52,9 @@ namespace Robot
 
         public void AddSurface(Vector3 direction, string name){
             if(this.surfaces == null){
-                this.surfaces = new Dictionary<Vector3, PartSelectorSurface>();
+                this.surfaces = new Dictionary<Vector3, PartSurface>();
             }
-            this.surfaces[direction] = PartSelectorSurface.Create(this, partType, manipulator, direction, name);
+            this.surfaces[direction] = PartSurface.Create(this, partType, manipulator, direction, name);
 
         }
 

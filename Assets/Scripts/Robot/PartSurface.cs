@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Robot{
-public class PartSelectorSurface : MonoBehaviour
+public class PartSurface : MonoBehaviour
 {
     [SerializeField]
     Vector3 direction;
@@ -13,9 +13,7 @@ public class PartSelectorSurface : MonoBehaviour
 
     [SerializeField]
     PartType partType;
-
-    [SerializeField]
-    RobotManipulator manipulator;
+    
 
     public void SetPartType(PartType partType){
         this.partType = partType;
@@ -38,21 +36,18 @@ public class PartSelectorSurface : MonoBehaviour
         return part;
     }
 
-    public void SetRobotManipulator(RobotManipulator manipulator){
-        this.manipulator = manipulator;
-    }
 
 
-    public static PartSelectorSurface Create(Part part, PartType partType, RobotManipulator manipulator, PartSurfaceType surfaceType){
+    public static PartSurface Create(Part part, PartType partType, RobotManipulator manipulator, PartSurfaceType surfaceType){
         GameObject newSurface = new GameObject();
         newSurface.name =  surfaceType.GetName();
         Vector3 direction = surfaceType.GetDirection();
 
-        PartSelectorSurface newPartSelectorSurface = newSurface.AddComponent<PartSelectorSurface>();
-        newPartSelectorSurface.SetPartType(partType);
-        newPartSelectorSurface.SetDirection(direction);
-        newPartSelectorSurface.SetPart(part);
-        newPartSelectorSurface.SetRobotManipulator(manipulator);
+        PartSurface newPartSurface = newSurface.AddComponent<PartSurface>();
+        newPartSurface.SetPartType(partType);
+        newPartSurface.SetDirection(direction);
+        newPartSurface.SetPart(part);
+
         
         Part.AddBoxCollider(newSurface, partType);
         if(manipulator.GetRenderHitSelections()){
@@ -61,9 +56,9 @@ public class PartSelectorSurface : MonoBehaviour
         }
         
         newSurface.transform.parent = part.gameObject.transform;
-        newPartSelectorSurface.UpdatePositionRotationScale();
+        newPartSurface.UpdatePositionRotationScale();
 
-        return newPartSelectorSurface;
+        return newPartSurface;
     }
 
     public void UpdatePositionRotationScale(){

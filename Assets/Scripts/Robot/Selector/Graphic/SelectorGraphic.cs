@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Robot{
-public class PartSelectorGraphic : MonoBehaviour
+public class SelectorGraphic : MonoBehaviour
 {
 
     Renderer renderer;

@@ -7,7 +7,7 @@ namespace Robot
 {
 
 
-    public class PartSurfacePartSelector : Selector
+    public class PartSurfacePartSelector : RaycastHitter
     {
         
         protected PartSurface selectedPartSurface;
@@ -23,5 +23,7 @@ namespace Robot
         {
 
         }
+        
+       
     }
 }

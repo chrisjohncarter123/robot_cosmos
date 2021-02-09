@@ -118,14 +118,14 @@ public class RobotManipulator : MonoBehaviour
     }
 
 
-    public Part AddPart<T>(PartSelectorSurface surface) where T : MonoBehaviour {
+    public Part AddPart<T>(PartSurface surface) where T : MonoBehaviour {
         PartType partType = GetPartType<T>();
         
         return AddPart(partType);
 
     }
 
-    public Part AddPart(PartType partType, PartSelectorSurface surface){
+    public Part AddPart(PartType partType, PartSurface surface){
         
         return Part.Create(robotHead, partParent, partType, this);
 
@@ -137,7 +137,7 @@ public class RobotManipulator : MonoBehaviour
 
     }
 
-    public void AttachPart(Part basePart, PartSelectorSurface surface, Part attachingPart){
+    public void AttachPart(Part basePart, PartSurface surface, Part attachingPart){
         attachingPart.transform.position = surface.GetAttachingPosition();
         attachingPart.transform.eulerAngles = surface.GetAttachingEulerAngles();
        

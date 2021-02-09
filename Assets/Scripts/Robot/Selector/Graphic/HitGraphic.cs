@@ -19,5 +19,10 @@ namespace Robot
         {
 
         }
+
+        public override void UpdateGraphic()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
